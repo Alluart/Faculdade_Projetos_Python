@@ -1,37 +1,41 @@
-# Enunciado: Você e sua equipe de programadores foram contratados para desenvolver um app de vendas para uma loja que vende Açaí e Cupuaçu. Você ficou com a parte de desenvolver a interface do cliente para retirada do produto. 
+#Acumulador
+valor = 0
 
-# A Loja possui seguinte relação: 
-# Tamanho P de Cupuaçu (CP) custa 9 reais e o Açaí (AC) custa 11 reais; 
-# Tamanho M de Cupuaçu (CP) custa 14 reais e o Açaí (AC) custa 16 reais; 
-# Tamanho G de Cupuaçu (CP) custa 18 reais e o Açaí (AC) custa 20 reais; 
-
-# Elabore um programa em Python que:  
-
-# Deve-se implementar o print com uma mensagem de boas-vindas que apareça o seu nome e sobrenome [EXIGÊNCIA DE CÓDIGO 1 de 8]; 
-
-
-# Deve-se implementar o input do sabor (CP/AC) e o print “Sabor inválido. Tente novamente" se o usuário entra com valor diferente de CP e AC [EXIGÊNCIA DE CÓDIGO 2 de 8]; 
-
-
-# Deve-se implementar o input do tamanho (P/M/G) e o print “Tamanho inválido. Tente novamente" se o usuário com entra valor diferente de P, M ou G [EXIGÊNCIA DE CÓDIGO 3 de 8]; 
-
-
-# Deve-se implementar if, elif e/ou else, utilizando o modelo aninhado (aula 3 – Tema 4) com cada uma das combinações de sabor e tamanho [EXIGÊNCIA DE CÓDIGO 4 de 8]; 
-
-
-# Deve-se implementar um acumulador para somar os valores dos pedidos [EXIGÊNCIA DE CÓDIGO 5 de 8]; 
-
-
-# Deve-se implementar o input com a pergunta: “Deseja pedir mais alguma coisa?”. Se sim repetir a partir do item B, senão encerrar o programa executar o print do acumulador [EXIGÊNCIA DE CÓDIGO 6 de 8]; 
-
-
-# Deve-se implementar as estruturas de while, break, continue (todas elas) [EXIGÊNCIA DE CÓDIGO 7 de 8]; 
-
-
-# Deve-se inserir comentários relevantes no código [EXIGÊNCIA DE CÓDIGO 8 de 8];
-# 
-#  
-# Deve-se apresentar na saída de console uma mensagem de boas-vindas com o seu nome [EXIGÊNCIA DE SAÍDA DE CONSOLE 1 de 4];
-# Deve-se apresentar na saída de console um pedido em que o usuário errou o sabor [EXIGÊNCIA DE SAÍDA DE CONSOLE 2 de 4];
-# Deve-se apresentar na saída de console um pedido em que o usuário errou o tamanho [EXIGÊNCIA DE SAÍDA DE CONSOLE 3 de 4];
-# Deve-se apresentar na saída de console um pedido com duas opções sabores diferentes e com tamanhos diferentes [EXIGÊNCIA DE SAÍDA DE CONSOLE 4 de 4];   
+#Mensagem de entrada e tabela de preços
+print(' ' * 10, 'Bem-vindos a loja do Thiago Agostinho\n')
+print(' ' * 10, 'Tamanho', ' ' * 5, 'Cupuaçu', ' ' * 5, 'Açaí\n',
+' ' * 10, 'P', '   ', ' ' * 4, 'R$ 9,00', ' ' * 4, 'R$ 11,00\n',
+' ' * 10, 'M', '   ', ' ' * 4, 'R$ 14,00', ' ' * 3, 'R$ 16,00\n',
+' ' * 10, 'G', '   ', ' ' * 4, 'R$ 18,00', ' ' * 3, 'R$ 20,00\n')
+#Inicia o loop de pedidos
+while True:
+    # Verifica o sabor e reinicia o loop se estiver errado
+    sabor = input('Qual sabor você gostaria de comprar?(CP/AC)').strip().upper()
+    if sabor != 'CP' and sabor != 'AC':  
+        print('Sabor inválido. Tente novamente.') 
+        continue  
+    # Verifica o tamanho e reinicia o loop se estiver errado
+    tamanho = input(f'Qual o tamanho do {sabor}? (P/M/G) ').strip().upper()
+    if tamanho != 'P' and tamanho != 'M' and tamanho != 'G':  
+        print('Tamanho inválido. Tente novamente.') 
+        continue  
+    # Adiciona o valor correspondente às escolhas do usuário
+    if sabor == 'CP' and tamanho == 'P':
+        valor += 9
+    elif sabor == 'CP' and tamanho == 'M':
+        valor += 14 
+    elif sabor == 'CP' and tamanho == 'G':
+        valor += 18
+    elif sabor == 'AC' and tamanho == 'P':
+        valor += 11
+    elif sabor == 'AC' and tamanho == 'M':
+        valor += 16
+    elif sabor == 'AC' and tamanho == 'G':
+        valor += 20
+    # Pergunta se o usuário gostaria de continuar
+    continuar = input('Deseja pedir mais alguma coisa?').strip().upper()
+    if continuar != 'SIM':
+        break
+    
+# Exibe a mensagem final com o valor total
+print(f'seu pedido ficou no total de R$ {valor:.2f}')
